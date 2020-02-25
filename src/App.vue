@@ -1,15 +1,19 @@
 <template>
   <div id="app">
     <MovieForm />
+    <MovieList />
+
   </div>
 </template>
 
 <script>
 import MovieForm from './components/MovieForm'
+import MovieList from './components/MovieList'
 export default {
   name: 'App',
   components: {
-    MovieForm
+    MovieForm,
+    MovieList
   }
 }
 </script>
