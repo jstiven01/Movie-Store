@@ -10,12 +10,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
-    name: "MovieList",
-    computed: mapGetters(['allMovies'])
-    
-}
+  name: 'MovieList',
+  methods: {
+    ...mapActions(['fetchMovies']),
+  },
+  computed: mapGetters(['allMovies']),
+  created() {
+    this.fetchMovies('casa');
+  },
+
+};
 </script>
 
 <style  scoped>
