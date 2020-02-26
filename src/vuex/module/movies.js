@@ -1,5 +1,32 @@
 import axios from 'axios';
 
+
+const getters = {
+  allMovies: (state) => state.movies,
+};
+const actions = {
+  async fetchMovies({ commit }, title) {
+    const response = await axios.get(
+      'https://api.themoviedb.org/3/search/movie',
+      {
+        params: {
+          api_key: '0ff5b80581bf1b540b658c2d699cc617',
+          query: title,
+        },
+      },
+      { withCredentials: true },
+    );
+    commit('setMovies', response.data.results);
+  },
+};
+const mutations = {
+  setMovies(state, movies) {
+    // eslint-disable-next-line no-param-reassign
+    state.movies = movies;
+    return state.movies;
+  },
+};
+
 const state = {
   movies: [
     {
@@ -11,28 +38,6 @@ const state = {
       title: 'Movie Two',
     },
   ],
-};
-const getters = {
-  allMovies: (state) => state.movies,
-};
-const actions = {
-  async fetchMovies({ commit, name }) {
-    console.log(commit, name);
-    const response = await axios.get(
-      'https://api.themoviedb.org/3/search/movie',
-      {
-        params: {
-          api_key: '0ff5b80581bf1b540b658c2d699cc617',
-          query: 'casa',
-        },
-      },
-      { withCredentials: true },
-    );
-    commit('setMovies', response.data.results);
-  },
-};
-const mutations = {
-  setMovies: (state, movies) => (state.movies = movies),
 };
 
 export default {
