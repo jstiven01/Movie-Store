@@ -16,6 +16,7 @@ const actions = {
       },
       { withCredentials: true },
     );
+    console.log(response.data);
     commit('setMovies', response.data.results);
   },
 };

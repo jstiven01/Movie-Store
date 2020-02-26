@@ -2,20 +2,24 @@
   <div id="app">
     <MovieForm />
     <MovieList />
+    <Pagination />
 
   </div>
 </template>
 
 <script>
-import MovieForm from './components/MovieForm'
-import MovieList from './components/MovieList'
+import MovieForm from './components/MovieForm.vue';
+import MovieList from './components/MovieList.vue';
+import Pagination from './components/Pagination.vue';
+
 export default {
   name: 'App',
   components: {
     MovieForm,
-    MovieList
-  }
-}
+    MovieList,
+    Pagination,
+  },
+};
 </script>
 
 <style>
