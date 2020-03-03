@@ -2,7 +2,7 @@
   <table class="table">
 
     <tbody>
-      <tr v-for="repo in repositories" :key="repo.id">
+      <tr v-for="repo in showRepos" :key="repo.id">
         <th scope="row">
           {{ repositories.indexOf(repo) + 1 }}
         </th>
@@ -31,6 +31,7 @@ export default {
   name: 'DataTable',
   props: {
     repositories: Array,
+    showRepos: Array,
   },
 };
 </script>

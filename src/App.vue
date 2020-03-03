@@ -2,7 +2,20 @@
   <div id="app">
     <MovieForm />
     <MovieList />
-    <DataTable :repositories="repositories" />
+    <DataTable :showRepos="showRepos" :repositories="repositories" />
+     <div class="my-4"> <!-- Pagination -->
+   <ul class="pagination pagination-md justify-content-center text-center">
+        <li class="page-item">
+          <a class="page-link" @click="prevPage">Previous</a>
+        </li>
+        <li class="page-link" style="background-color: inherit">
+            1 of 5
+        </li>
+        <li class="page-item">
+          <a class="page-link" @click="nextPage">Next</a>
+        </li>
+      </ul>
+ </div><!--./Pagination -->
 
   </div>
 </template>
@@ -26,6 +39,9 @@ export default {
     return {
       githubPage: 1,
       repositories: [],
+      page: 1,
+      loading: false,
+      perPage: 20,
     };
   },
 
@@ -41,6 +57,22 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    prevPage() {
+      this.loading = true;
+      this.page -= 1;
+    },
+    nextPage() {
+      this.loading = true;
+      this.page += 1;
+    },
+  },
+  computed: {
+    showRepos() {
+      const start = (this.page - 1) * this.perPage;
+      const end = start + this.perPage;
+      // this.loading = false;
+      return this.repositories.slice(start, end);
     },
   },
 };
